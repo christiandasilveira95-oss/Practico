@@ -1,0 +1,271 @@
+/* ===== Dashboard de administración =====
+   Usa la misma paleta de la landing (beige, naranja, marrón) pero con una interfaz de trabajo:
+   menú lateral oscuro + contenido claro, para que se note que es otra zona del sitio. */
+:root {
+    --beige: #ddd5a8;
+    --naranja: #e57a00;
+    --marron: #8a4300;
+    --marron-oscuro: #3d1f00;
+    --texto: #222222;
+    --fondo-panel: #f1f0ec;
+    --borde: #dcd9cf;
+    --menu-ancho: 240px;
+}
+
+body.admin {
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--texto);
+    background-color: var(--fondo-panel);
+}
+
+/* ----- Menú lateral ----- */
+.admin-menu {
+    background-color: var(--marron-oscuro);
+    color: var(--beige);
+    --bs-offcanvas-width: var(--menu-ancho);
+    --bs-offcanvas-bg: var(--marron-oscuro);
+    --bs-offcanvas-color: var(--beige);
+}
+
+.admin-marca {
+    font-family: "Georgia", serif;
+    font-style: italic;
+    font-size: 1.3rem;
+    color: var(--beige);
+}
+
+.admin-submarca {
+    font-size: 0.85rem;
+    opacity: 0.8;
+}
+
+.admin-menu .nav-link {
+    color: var(--beige);
+    border-left: 3px solid transparent;
+    border-radius: 0;
+    padding: 10px 14px;
+}
+
+.admin-menu .nav-link:hover {
+    background-color: rgba(221, 213, 168, 0.12);
+    color: white;
+}
+
+.admin-menu .nav-link.active {
+    border-left-color: var(--naranja);
+    background-color: rgba(221, 213, 168, 0.18);
+    color: white;
+    font-weight: bold;
+}
+
+.admin-menu .nav-link:focus-visible,
+.admin a:focus-visible,
+.admin button:focus-visible {
+    outline: 3px solid var(--naranja);
+    outline-offset: 2px;
+}
+
+/* ----- Barra superior (móvil) ----- */
+.admin-topbar {
+    position: sticky;
+    top: 0;
+    z-index: 1020;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 8px 16px;
+    background-color: var(--marron-oscuro);
+}
+
+.btn-menu {
+    background-color: var(--beige);
+    padding: 4px 10px;
+}
+
+/* ----- Contenido ----- */
+.admin-contenido {
+    padding: 20px 16px 40px;
+}
+
+.admin-encabezado {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.admin-encabezado h1 {
+    font-size: 1.6rem;
+    margin: 0;
+}
+
+.admin-sesion {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.admin-usuario {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+    line-height: 1.2;
+}
+
+.admin-usuario-nombre {
+    font-weight: bold;
+}
+
+.admin-usuario-detalle {
+    font-size: 0.8rem;
+    color: #5b5b5b;
+}
+
+/* En escritorio el menú es una columna fija a la izquierda */
+@media (min-width: 992px) {
+    /* Bootstrap (.offcanvas-lg) deja el panel transparente y de ancho automático en pantallas anchas:
+       se fuerza el fondo oscuro y el ancho propios con !important para pisar esa regla */
+    .admin-menu.offcanvas-lg {
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        width: var(--menu-ancho) !important;
+        background-color: var(--marron-oscuro) !important;
+    }
+
+    .admin-menu .offcanvas-body {
+        padding: 24px 0;
+    }
+
+    .admin-menu .admin-marca,
+    .admin-menu .admin-submarca {
+        padding: 0 20px;
+    }
+
+    .admin-contenido {
+        margin-left: var(--menu-ancho);
+        padding: 28px 32px 48px;
+    }
+}
+
+/* ----- Paneles y datos ----- */
+.panel {
+    background-color: white;
+    border: 1px solid var(--borde);
+    border-radius: 6px;
+    padding: 20px;
+}
+
+.panel-titulo {
+    font-size: 1.15rem;
+}
+
+.dato {
+    background-color: white;
+    border: 1px solid var(--borde);
+    border-left: 4px solid var(--naranja);
+    border-radius: 6px;
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.dato-numero {
+    font-size: 1.8rem;
+    font-weight: bold;
+    line-height: 1.1;
+    color: var(--marron);
+}
+
+.dato-texto {
+    font-size: 0.9rem;
+    color: #5b5b5b;
+}
+
+/* ----- Tabla de libros ----- */
+.tabla-libros thead th {
+    font-size: 0.85rem;
+    color: #5b5b5b;
+    border-bottom-color: var(--borde);
+    white-space: nowrap;
+}
+
+.tabla-libros .miniatura {
+    width: 40px;
+    height: 56px;
+    object-fit: cover;
+    border-radius: 3px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+}
+
+.tabla-libros .col-titulo {
+    min-width: 180px;
+    font-weight: bold;
+}
+
+.tabla-libros .col-precio {
+    white-space: nowrap;
+}
+
+.tabla-libros .col-acciones {
+    white-space: nowrap;
+}
+
+.estado {
+    display: inline-block;
+    font-size: 0.8rem;
+    padding: 2px 8px;
+    border-radius: 10px;
+    white-space: nowrap;
+}
+
+.estado-disponible {
+    background-color: #dff0e4;
+    color: #17562e;
+}
+
+.estado-agotado {
+    background-color: #ece4de;
+    color: #5c2d00;
+}
+
+/* ----- Botones y formularios con la paleta del sitio ----- */
+.admin .btn-primary {
+    --bs-btn-bg: var(--marron);
+    --bs-btn-border-color: var(--marron);
+    --bs-btn-hover-bg: #6e3500;
+    --bs-btn-hover-border-color: #6e3500;
+    --bs-btn-active-bg: #5c2d00;
+    --bs-btn-active-border-color: #5c2d00;
+    --bs-btn-disabled-bg: var(--marron);
+    --bs-btn-disabled-border-color: var(--marron);
+}
+
+.admin .form-control:focus,
+.admin .form-select:focus {
+    border-color: var(--naranja);
+    box-shadow: 0 0 0 0.2rem rgba(229, 122, 0, 0.25);
+}
+
+.preview-portada {
+    width: 80px;
+    height: 112px;
+    object-fit: cover;
+    border-radius: 4px;
+    background-color: var(--beige);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+    flex-shrink: 0;
+}
+
+/* Avisos arriba a la derecha, sobre el contenido */
+#avisos {
+    position: fixed;
+    top: 12px;
+    right: 12px;
+    z-index: 2000;
+    width: min(380px, calc(100% - 24px));
+}

@@ -1,0 +1,269 @@
+/* ===== Pantalla de login =====
+   Diseño: tarjeta dividida en dos mitades. Izquierda: ilustración con "BIENVENIDO".
+   Derecha: formulario con campos subrayados y botón oscuro.
+   Usa la paleta del sitio (beige, naranja, marrón). */
+:root {
+    --naranja: #e57a00;
+    --marron: #8a4300;
+    --marron-oscuro: #3d1f00;   /* color del botón y de los enlaces: cambiarlo acá cambia toda la pantalla */
+    --texto: #222222;
+    --gris-linea: #8c8c8c;
+    --fuente-titulo: "Josefin Sans", "Century Gothic", "Avenir Next", "Segoe UI", Arial, sans-serif;
+}
+
+/* Los tamaños incluyen padding y borde (así no depende de que Bootstrap haya cargado) */
+.auth-pagina *,
+.auth-pagina *::before,
+.auth-pagina *::after {
+    box-sizing: border-box;
+}
+
+body.auth-pagina {
+    min-height: 100vh;
+    margin: 0;
+    padding: 24px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--texto);
+    background: linear-gradient(to bottom, var(--marron), var(--naranja));
+}
+
+/* ----- Tarjeta ----- */
+.auth-tarjeta {
+    display: flex;
+    flex-direction: column;          /* en celular: imagen arriba, formulario abajo */
+    width: 100%;
+    max-width: 980px;
+    overflow: hidden;
+    border-radius: 14px;
+    background-color: white;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+}
+
+/* ----- Imagen ----- */
+.auth-imagen {
+    position: relative;
+    flex: 0 0 auto;
+    height: 200px;
+    background-color: #1c1612;
+}
+
+.auth-imagen img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 79% 50%;        /* deja a la chica con auriculares en el centro del recorte */
+}
+
+/* Velo oscuro para que el texto blanco se lea sobre la ilustración */
+.auth-imagen::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.05) 55%, rgba(0, 0, 0, 0.25));
+}
+
+.auth-bienvenida {
+    position: absolute;
+    z-index: 1;
+    top: 18%;
+    left: 0;
+    right: 0;
+    margin: 0;
+    padding: 0 24px;
+    text-align: center;
+    color: white;
+    font-family: var(--fuente-titulo);
+    font-weight: 300;
+    font-size: 1.5rem;
+    letter-spacing: 0.35em;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
+}
+
+/* ----- Formulario ----- */
+.auth-form {
+    position: relative;
+    flex: 1 1 auto;
+    padding: 28px 28px 24px;
+}
+
+.auth-volver {
+    display: inline-block;
+    font-size: 0.85rem;
+    color: var(--marron-oscuro);
+    text-decoration: none;
+}
+
+.auth-volver:hover {
+    text-decoration: underline;
+}
+
+.auth-form-centro {
+    width: 100%;
+    max-width: 340px;
+    margin: 0 auto;
+    padding: 28px 0 24px;
+}
+
+.auth-titulo {
+    margin: 0 0 32px;
+    text-align: center;
+    font-family: var(--fuente-titulo);
+    font-weight: 600;
+    font-size: 2.1rem;
+    color: #111;
+}
+
+/* Campos: solo una línea abajo; la etiqueta hace de "placeholder" y sube al escribir */
+.auth-campo {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+.auth-campo input {
+    width: 100%;
+    padding: 22px 0 6px;
+    border: 0;
+    border-bottom: 1px solid var(--gris-linea);
+    border-radius: 0;
+    background: transparent;
+    font-size: 1rem;
+    color: var(--texto);
+    outline: none;
+}
+
+.auth-campo input:focus {
+    border-bottom: 2px solid var(--marron-oscuro);
+    padding-bottom: 5px;             /* compensa el pixel extra del borde */
+}
+
+.auth-campo label {
+    position: absolute;
+    left: 0;
+    top: 21px;
+    font-size: 1rem;
+    color: #6f6f6f;
+    pointer-events: none;
+    transition: top 0.15s, font-size 0.15s, color 0.15s;
+}
+
+.auth-campo input:focus + label,
+.auth-campo input:not(:placeholder-shown) + label,
+.auth-campo input:-webkit-autofill + label {
+    top: 0;
+    font-size: 0.75rem;
+    color: var(--marron-oscuro);
+}
+
+.auth-campo-password input {
+    padding-right: 150px;            /* el texto no pasa por debajo del enlace */
+}
+
+.auth-olvido {
+    position: absolute;
+    right: 0;
+    top: 22px;
+    font-size: 0.72rem;
+    font-weight: bold;
+    color: var(--marron-oscuro);
+    text-decoration: none;
+}
+
+.auth-olvido:hover {
+    text-decoration: underline;
+}
+
+/* Botón */
+.auth-boton {
+    width: 100%;
+    margin-top: 6px;
+    padding: 13px 16px;
+    border: 0;
+    border-radius: 10px;
+    background-color: var(--marron-oscuro);
+    color: white;
+    font-family: var(--fuente-titulo);
+    font-weight: 600;
+    font-size: 1.1rem;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+}
+
+.auth-boton:hover {
+    background-color: #5a2f06;
+}
+
+.auth-boton:disabled {
+    opacity: 0.7;
+    cursor: wait;
+}
+
+.auth-pie {
+    margin: 0;
+    text-align: center;
+    font-size: 0.85rem;
+}
+
+.auth-pie a {
+    color: var(--marron-oscuro);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.auth-pie a:hover {
+    text-decoration: underline;
+}
+
+/* Foco visible para quien navega con teclado */
+.auth-boton:focus-visible,
+.auth-volver:focus-visible,
+.auth-olvido:focus-visible,
+.auth-pie a:focus-visible {
+    outline: 3px solid var(--naranja);
+    outline-offset: 3px;
+}
+
+/* ----- Escritorio: dos mitades lado a lado ----- */
+@media (min-width: 768px) {
+    .auth-tarjeta {
+        flex-direction: row;
+        min-height: 600px;
+    }
+
+    .auth-imagen {
+        flex: 1 1 50%;
+        height: auto;
+    }
+
+    .auth-bienvenida {
+        top: 16%;
+        font-size: 1.9rem;
+    }
+
+    .auth-form {
+        flex: 1 1 50%;
+        padding: 32px 40px 84px;     /* el espacio de abajo está reservado para "¿No tenés cuenta?" */
+    }
+
+    .auth-form-centro {
+        padding-top: 84px;
+    }
+
+    .auth-pie {
+        position: absolute;
+        left: 40px;
+        right: 40px;
+        bottom: 28px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .auth-campo label {
+        transition: none;
+    }
+}

@@ -1,0 +1,2 @@
+# Nadie accede a la configuración por URL: solo PHP la usa internamente
+Require all denied

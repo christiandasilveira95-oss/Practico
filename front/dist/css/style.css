@@ -1,0 +1,219 @@
+/* ===== Paleta de colores (la misma que en Figma) ===== */
+:root {
+    --beige: #ddd5a8;
+    --naranja: #e57a00;
+    --marron: #8a4300;
+    --texto: #222222;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--texto);
+}
+
+/* ===== Header ===== */
+.encabezado {
+    background-color: var(--beige);
+}
+
+.logo {
+    font-family: "Georgia", serif;
+    font-style: italic;
+    font-size: 1.4rem;
+}
+
+.btn-nav {
+    background-color: #e6e6e6;
+    border: 1px solid #555;
+    border-radius: 20px;
+    padding: 2px 14px;
+    color: var(--texto);
+}
+
+.btn-nav:hover {
+    background-color: var(--marron);
+    color: white;
+}
+
+/* ===== Banner ===== */
+.banner {
+    background-image: url("../../assets/img/lofi girl.png");
+    background-size: cover;
+    background-position: center;
+    min-height: 220px;
+}
+
+.banner-texto {
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    max-width: 320px;
+}
+
+/* ===== Catalogo ===== */
+.catalogo {
+    background: linear-gradient(to bottom, var(--marron), var(--naranja));
+}
+
+.libro {
+    border: none;
+    background-color: transparent;
+}
+
+.libro .card-img-top {
+    border-radius: 4px;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5);
+}
+
+.libro .card-body {
+    color: white;
+    padding: 8px 0;
+}
+
+.libro .card-title {
+    font-size: 1rem;
+}
+
+.libro .card-text {
+    font-size: 0.85rem;
+}
+
+.libro:hover {
+    transform: scale(1.04);
+    transition: 0.2s;
+}
+
+.btn-comprar {
+    background-color: var(--beige);
+    color: var(--texto);
+}
+
+.btn-comprar:hover {
+    background-color: white;
+}
+
+/* ===== Footer ===== */
+.pie {
+    background-color: var(--beige);
+}
+
+.pie p {
+    margin-bottom: 10px;
+}
+
+/* ===== Pantallas grandes ===== */
+@media (min-width: 768px) {
+    .banner {
+        min-height: 300px;
+    }
+
+    .banner-texto {
+        font-size: 1.8rem;
+        max-width: 450px;
+    }
+}
+
+/* ===== Catálogo dinámico (Práctico 3) ===== */
+.libro {
+    position: relative;
+}
+
+/* Libro marcado como "No disponible" en el dashboard */
+.libro.no-disponible .card-img-top {
+    filter: grayscale(0.85);
+    opacity: 0.65;
+}
+
+.etiqueta-agotado {
+    position: absolute;
+    top: 8px;
+    left: 0;
+    z-index: 1;
+    background-color: var(--texto);
+    color: white;
+    font-size: 0.75rem;
+    padding: 2px 8px;
+    border-radius: 0 4px 4px 0;
+}
+
+/* ===== Detalle del libro (modal "Ver más") ===== */
+.modal-libro {
+    background-color: var(--beige);
+    border: none;
+}
+
+.modal-libro .modal-header {
+    border-bottom-color: rgba(0, 0, 0, 0.15);
+}
+
+.badge-categoria {
+    background-color: var(--marron);
+}
+
+.precio-libro {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: var(--marron);
+}
+
+.estado-ok {
+    background-color: #1e6b3a;
+}
+
+.estado-no {
+    background-color: var(--texto);
+}
+
+/* ===== Login ===== */
+.pagina-login {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(to bottom, var(--marron), var(--naranja));
+}
+
+.login-contenedor {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 16px;
+}
+
+.login-tarjeta {
+    width: 100%;
+    max-width: 400px;
+    background-color: var(--beige);
+    border-radius: 8px;
+    padding: 28px 24px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+}
+
+.login-tarjeta h1 {
+    font-family: "Georgia", serif;
+    font-style: italic;
+    font-size: 1.6rem;
+    margin-bottom: 4px;
+}
+
+.btn-login {
+    background-color: var(--marron);
+    border-color: var(--marron);
+    color: white;
+}
+
+.btn-login:hover,
+.btn-login:focus {
+    background-color: #6e3500;
+    border-color: #6e3500;
+    color: white;
+}
+
+.login-tarjeta .form-control:focus {
+    border-color: var(--naranja);
+    box-shadow: 0 0 0 0.2rem rgba(229, 122, 0, 0.3);
+}
+
+.login-tarjeta a:not(.btn) {
+    color: var(--marron);
+}
